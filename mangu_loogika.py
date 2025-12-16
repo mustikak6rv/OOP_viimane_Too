@@ -4,29 +4,48 @@ import random
 
 # Vaenlaste genereerimine
 vaenlased = [] 
-
 for i in range(2):  
     randx = random.randint(1, 6)
     randy = random.randint(1, 6)
-    print(f"Vaenlane: {i+1} at ({randx}, {randy})")
     vaenlane = Vaenlane(100, 15, randx, randy)
     vaenlased.append(vaenlane)  
 
-print(f"Generated {len(vaenlased)} enemies.") 
-
 Trevori = Karakter("Trevori", 250, 50, 0, 0)
 
-# Movemint
-print("\n=== Trevori Movement System ===")
-print("Commands: 'w' (up), 's' (down), 'a' (left), 'd' (right), 'q' (quit)")
-print(f"Trevori position: ({Trevori.x}, {Trevori.y})")
+def statid():
+    """EASYGUI mänguseis"""
+    status = f"⚔️ TREVORI SUUR LAHINGU MÄNG ⚔️\n"
+    status += f"Trevori: ({Trevori.x}, {Trevori.y}) | ❤️ {Trevori.Elud}\n\n"
+    status += "VAENLASED:\n"
+    for i, vaenlane in enumerate(vaenlased, 1):
+        status += f"Vaenlane{i}: ({vaenlane.x}, {vaenlane.y}) ❤️ {vaenlane.Elud}\n"
+    
+    buttons = ["W (üles)", "S (alla)", "A (vasak)", "D (parem)", "Lõpeta"]
+    valik = buttonbox(status, "TREVORI MÄNG", buttons)
+    
+    if valik is None:
+        return 'q'
+    elif "W" in valik:
+        return 'w'
+    elif "S" in valik:
+        return 's'
+    elif "A" in valik:
+        return 'a'
+    elif "D" in valik:
+        return 'd'
+    else:
+        return 'q'
 
+# Mängutsükkel
 while True:
-    command = input("Enter movement command: ").lower().strip()
+    command = statid()
+    
     if command == 'q':
-        print("Mäng lõppes!")
+        msgbox("Mäng lõppes!", "BAKA!")
         break
-    elif command == 'w':
+    
+    # Liikumine
+    if command == 'w':
         Trevori.LiiguYles()
     elif command == 's':
         Trevori.LiiguAlla()
@@ -34,27 +53,25 @@ while True:
         Trevori.LiiguVasakule()
     elif command == 'd':
         Trevori.LiiguParemale()
-    else:
-        print("Teadmatu käsk! Kasuta w/a/s/d või q et lõpetada mäng.")
     
-    # For loop mis kontrollib kas trevori on vastaste peal.
-    for vaenlane in vaenlased:
+    # Kokkupõrke kontroll
+    for vaenlane in vaenlased[:]:
         if Trevori.x == vaenlane.x and Trevori.y == vaenlane.y:
-            print("Kokku põrkusid vaenlaga!")
+            msgbox(f"⚔️ LAHING!\nTrevori: {Trevori.Elud} ❤️\nVaenlane: {vaenlane.Elud} ❤️", "LAHING!")
+            
             Trevori.KaotaElusi(vaenlane.Tugevus)
             vaenlane.KaotaElusi(Trevori.Tugevus)
-            # Eemalda surnud vaenlased
+            
             if vaenlane.Elud <= 0:
                 vaenlased.remove(vaenlane)
+                msgbox("VAENLANE HÄVITATUD!", "VÕIT!")
+            
+            if Trevori.Elud <= 0:
+                msgbox("TREVORI SURI!", "KAOTUS!")
+                exit()
             break
 
-    print(f"Trevori positoon: ({Trevori.x}, {Trevori.y})")
-    print(f"Elud: {Trevori.Elud}")
-
-    
-    print("Vaenlaste positsioonid:")
-    for i, vaenlane in enumerate(vaenlased, 1):
-        print(f"  Vaenlane {i}: Elud: {vaenlane.Elud} | ({vaenlane.x}, {vaenlane.y})")
-
+    # VÕIT!
     if not vaenlased:
-        print("Kõik vaenlased on hävitatud!")
+        msgbox("KÕIK VAENLASED HÄVITATUD! ", "SIGMA VÕIT!")
+        break
