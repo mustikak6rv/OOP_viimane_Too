@@ -1,15 +1,14 @@
 # Auto ja jalgratas
 
 
-class Soiduk: 
-    def __init__(self, Mark, Aasta, Kiirus, Labisoit):
-        self.Mark = Mark
-        self.Aasta = Aasta
-        self.Kiirus = Kiirus
-        self.Labisoit = 0
+class Karakter: 
+    def __init__(self, Nimi, Elud, Tugevus):
+        self.Nimi = Nimi
+        self.Elud = Elud
+        self.Tugevus = Tugevus
 
-    def soida(self, km):
+    def KaotaElusi(self, kaotatudelud):
         if 0 <= km:
-            self.labisoit += km
+            self.Elud += kaotatudelud
         else:
             print("Kilomeetrid peavad olema >= 0")
