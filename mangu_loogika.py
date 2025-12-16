@@ -16,7 +16,7 @@ print(f"Generated {len(vaenlased)} enemies.")
 
 Trevori = Karakter("Trevori", 250, 50, 0, 0)
 
-# While loop for continuous movement system
+# Movemint
 print("\n=== Trevori Movement System ===")
 print("Commands: 'w' (up), 's' (down), 'a' (left), 'd' (right), 'q' (quit)")
 print(f"Trevori position: ({Trevori.x}, {Trevori.y})")
@@ -46,12 +46,12 @@ while True:
             # Eemalda surnud vaenlased
             if vaenlane.Elud <= 0:
                 vaenlased.remove(vaenlane)
-            break  # Ainult esimene kokkupõrge käsitletakse
+            break
 
     print(f"Trevori positoon: ({Trevori.x}, {Trevori.y})")
     print(f"Elud: {Trevori.Elud}")
 
-    # UUS RIDA: Printi kõigi vaenlaste positsioonid iga kord
+    
     print("Vaenlaste positsioonid:")
     for i, vaenlane in enumerate(vaenlased, 1):
         print(f"  Vaenlane {i}: Elud: {vaenlane.Elud} | ({vaenlane.x}, {vaenlane.y})")
