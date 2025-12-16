@@ -6,7 +6,7 @@ class Karakter:
         self.Tugevus = Tugevus
 
     def KaotaElusi(self, kaotatudelud):
-        if 0 <= km:
-            self.Elud += kaotatudelud
+        if kaotatudelud <= 0:
+            print("Ei sa kaotada vähem kui 1 elu")
         else:
-            print("Kilomeetrid peavad olema >= 0")
+            self.Elud -= kaotatudelud
