@@ -18,8 +18,8 @@ class Karakter:
         if lisatudelud <= 0:
             print("Ei sa lisada vähem kui 1 elu")
         else:
-            self.Elud += kaotatudelud
-            print(f"[{self.Nimi}] Lisati {kaotatudelud} elu.")
+            self.Elud += lisatudelud
+            print(f"[{self.Nimi}] Lisati {lisatudelud} elu.")
 
     def LiiguYles(self):
         self.y += 1
