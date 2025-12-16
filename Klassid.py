@@ -43,6 +43,8 @@ class Vaenlane:
     def __init__(self, Elud, Tugevus, x, y):
         self.Elud = Elud
         self.Tugevus = Tugevus
+        self.x = x
+        self.y = y
 
     def KaotaElusi(self, kaotatudelud):
         if kaotatudelud <= 0:
