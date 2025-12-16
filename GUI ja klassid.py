@@ -21,19 +21,19 @@ class Karakter:
             self.Elud += kaotatudelud
             print(f"[{self.Nimi}] Lisati {kaotatudelud} elu.")
 
-    def LiiguYles(self)
+    def LiiguYles(self):
         self.y += 1
         print(f"[{self.Nimi}] Liikusid ülesse")
 
-    def LiiguAlla(self)
+    def LiiguAlla(self):
         self.y -= 1
         print(f"[{self.Nimi}] Liikusid alla")
 
-    def LiiguVasakule(self)
+    def LiiguVasakule(self):
         self.x -= 1
         print(f"[{self.Nimi}] Liikusid vasakule")
 
-     def LiiguParemale(self)
+    def LiiguParemale(self):
         self.x += 1
         print(f"[{self.Nimi}] Liikusid paremale")   
 
